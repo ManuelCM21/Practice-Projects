@@ -1,12 +1,12 @@
 
 package sistemaventas;
 
-import Vista.Login;
+import Vista.Login2;
 
 public class SistemaVentas {
 
     public static void main(String[] args) {
-        Login lg = new Login();
+        Login2 lg = new Login2();
         lg.setVisible(true);
     }
     

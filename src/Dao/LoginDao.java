@@ -40,7 +40,7 @@ public class LoginDao {
     }
     
     public boolean Registrar(LoginTo reg){
-        String sql = "INSERT INTO usuarios (nombre, correo, pass, rol) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO usuarios (nombre, usuario, pass, rol) VALUES (?,?,?,?)";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);

@@ -14,7 +14,7 @@ public class Conexion {
             con = DriverManager.getConnection(myBD, "root", "");
             return con;
         } catch (SQLException e) {
-            System.out.println(e.toString());
+            e.getMessage();
         }
         return null;
     }

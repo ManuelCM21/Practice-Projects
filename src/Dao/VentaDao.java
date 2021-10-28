@@ -1,4 +1,3 @@
-
 package Dao;
 
 import Modelo.Conexion;
@@ -32,13 +31,14 @@ import java.util.List;
 import javax.swing.filechooser.FileSystemView;
 
 public class VentaDao {
+
     Connection con;
     Conexion cn = new Conexion();
     PreparedStatement ps;
     ResultSet rs;
     int r;
-    
-    public int IdVenta(){
+
+    public int IdVenta() {
         int id = 0;
         String sql = "SELECT MAX(id) FROM ventas";
         try {
@@ -53,8 +53,8 @@ public class VentaDao {
         }
         return id;
     }
-    
-    public int RegistrarVenta(VentaTo v){
+
+    public int RegistrarVenta(VentaTo v) {
         String sql = "INSERT INTO ventas (cliente, vendedor, total, fecha) VALUES (?,?,?,?)";
         try {
             con = cn.getConnection();
@@ -66,7 +66,7 @@ public class VentaDao {
             ps.execute();
         } catch (SQLException e) {
             System.out.println(e.toString());
-        }finally{
+        } finally {
             try {
                 con.close();
             } catch (SQLException e) {
@@ -75,9 +75,9 @@ public class VentaDao {
         }
         return r;
     }
-    
-    public int RegistrarDetalle(DetalleTo Dv){
-       String sql = "INSERT INTO detalle (id_pro, cantidad, precio, id_venta) VALUES (?,?,?,?)";
+
+    public int RegistrarDetalle(DetalleTo Dv) {
+        String sql = "INSERT INTO detalle (id_pro, cantidad, precio, id_venta) VALUES (?,?,?,?)";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
@@ -88,7 +88,7 @@ public class VentaDao {
             ps.execute();
         } catch (SQLException e) {
             System.out.println(e.toString());
-        }finally{
+        } finally {
             try {
                 con.close();
             } catch (SQLException e) {
@@ -97,13 +97,13 @@ public class VentaDao {
         }
         return r;
     }
-    
-    public boolean ActualizarStock(int cant, int id){
+
+    public boolean ActualizarStock(int cant, int id) {
         String sql = "UPDATE productos SET stock = ? WHERE id = ?";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setInt(1,cant);
+            ps.setInt(1, cant);
             ps.setInt(2, id);
             ps.execute();
             return true;
@@ -112,29 +112,29 @@ public class VentaDao {
             return false;
         }
     }
-    
-    public List Listarventas(){
-       List<VentaTo> ListaVenta = new ArrayList();
-       String sql = "SELECT c.id AS id_cli, c.nombre, v.* FROM clientes c INNER JOIN ventas v ON c.id = v.cliente";
-       try {
-           con = cn.getConnection();
-           ps = con.prepareStatement(sql);
-           rs = ps.executeQuery();
-           while (rs.next()) {               
-               VentaTo vent = new VentaTo();
-               vent.setId(rs.getInt("id"));
-               vent.setNombre_cli(rs.getString("nombre"));
-               vent.setVendedor(rs.getString("vendedor"));
-               vent.setTotal(rs.getDouble("total"));
-               ListaVenta.add(vent);
-           }
-       } catch (SQLException e) {
-           System.out.println(e.toString());
-       }
-       return ListaVenta;
-   }
-    
-    public VentaTo BuscarVenta(int id){
+
+    public List Listarventas() {
+        List<VentaTo> ListaVenta = new ArrayList();
+        String sql = "SELECT c.id AS id_cli, c.nombre, v.* FROM clientes c INNER JOIN ventas v ON c.id = v.cliente";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                VentaTo vent = new VentaTo();
+                vent.setId(rs.getInt("id"));
+                vent.setNombre_cli(rs.getString("nombre"));
+                vent.setVendedor(rs.getString("vendedor"));
+                vent.setTotal(rs.getDouble("total"));
+                ListaVenta.add(vent);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return ListaVenta;
+    }
+
+    public VentaTo BuscarVenta(int id) {
         VentaTo cl = new VentaTo();
         String sql = "SELECT * FROM ventas WHERE id = ?";
         try {
@@ -154,12 +154,16 @@ public class VentaDao {
         }
         return cl;
     }
+
     
+
     public void pdfV(int idventa, int Cliente, double total, String usuario) {
         try {
             Date date = new Date();
             FileOutputStream archivo;
-            File salida = new File("src/pdf/venta.pdf");
+            String url = FileSystemView.getFileSystemView().getDefaultDirectory().getPath();
+            File salida = new File(url + "venta.pdf");
+            //File salida = new File("src/pdf/venta.pdf");
             archivo = new FileOutputStream(salida);
             Document doc = new Document();
             PdfWriter.getInstance(doc, archivo);
@@ -229,7 +233,6 @@ public class VentaDao {
                 } else {
                     proveedor.addCell("Publico en General");
                     proveedor.addCell("S/N");
-                    proveedor.addCell("S/N" + "\n\n");
                 }
 
             } catch (SQLException e) {
@@ -303,5 +306,4 @@ public class VentaDao {
             System.out.println(e.toString());
         }
     }
-
 }
