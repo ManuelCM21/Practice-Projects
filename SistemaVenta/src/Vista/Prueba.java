@@ -23,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -182,6 +183,7 @@ public class Prueba extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        btnCambiar = new javax.swing.JButton();
         LabelVendedor = new javax.swing.JLabel();
         btnNuevaVenta = new javax.swing.JButton();
         btnClientes = new javax.swing.JButton();
@@ -326,6 +328,14 @@ public class Prueba extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 196, 235, 27));
+
+        btnCambiar.setText("CAMBIAR");
+        btnCambiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCambiarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 640, -1, -1));
 
         LabelVendedor.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         LabelVendedor.setForeground(new java.awt.Color(255, 255, 255));
@@ -553,13 +563,16 @@ public class Prueba extends javax.swing.JFrame {
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 131, 843, 200));
 
-        btnEliminarventa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/eliminar.png"))); // NOI18N
+        btnEliminarventa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/boton_eliminar.png"))); // NOI18N
+        btnEliminarventa.setFocusable(false);
+        btnEliminarventa.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/boton_eliminar.png"))); // NOI18N
+        btnEliminarventa.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/eliminar_press.png"))); // NOI18N
         btnEliminarventa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarventaActionPerformed(evt);
             }
         });
-        jPanel2.add(btnEliminarventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 67, -1, 40));
+        jPanel2.add(btnEliminarventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 67, 60, 40));
 
         jLabel8.setFont(new java.awt.Font("Impact", 0, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 51, 204));
@@ -1125,7 +1138,7 @@ public class Prueba extends javax.swing.JFrame {
 
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 202, 903, 500));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Sis.Venta_vo.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Sistema_color.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
@@ -1653,6 +1666,18 @@ public class Prueba extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnIniciarActionPerformed
 
+    boolean cambiar = false;
+    
+    private void btnCambiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarActionPerformed
+        if (!cambiar) {
+            jLabel1.setIcon(new ImageIcon(getClass().getResource("/Img/Sistema_dark.png")));
+            cambiar = true;
+        } else if (cambiar) {
+            jLabel1.setIcon(new ImageIcon(getClass().getResource("/Img/Sistema_color.png")));
+            cambiar = false;
+        }
+    }//GEN-LAST:event_btnCambiarActionPerformed
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -1672,6 +1697,7 @@ public class Prueba extends javax.swing.JFrame {
     private javax.swing.JTable TableVenta;
     private javax.swing.JTable TableVentas;
     private javax.swing.JButton btnActualizarConfig;
+    private javax.swing.JButton btnCambiar;
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnClientes;
     private javax.swing.JButton btnConfig;
