@@ -7,6 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import utils.Generator;
 
 public class ImplPersona {
@@ -63,14 +64,15 @@ public class ImplPersona {
         return listaPersona;
     }
 
-    public int eliminarRegistroPersona(String sid) {
+    public int eliminarRegistroPersona(String id) {
 
         int i = 0;
         try {
-            sql = " delete from persona where persona_id='" + sid + "' ";
+//            sql = " delete from persona where persona_id='" + sid + "' ";
+            sql = " delete from persona where persona_id='" + id + "' ";
             stmt = cx.conectaMysql().createStatement();
             i = stmt.executeUpdate(sql);
-            System.out.println("Se elimino el registro");
+//            System.out.println("Se elimino el registro");
         } catch (SQLException ex) {
             ex.getMessage();
         }

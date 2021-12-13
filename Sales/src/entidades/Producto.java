@@ -7,7 +7,16 @@ public class Producto {
     private String marca;
     private String modelo;
     private String talla;
-    private Double precio;
+    private double precio;
+    private int stock;
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
 
     public String getId() {
         return id;
@@ -49,11 +58,11 @@ public class Producto {
         this.talla = talla;
     }
 
-    public Double getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(Double precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
     

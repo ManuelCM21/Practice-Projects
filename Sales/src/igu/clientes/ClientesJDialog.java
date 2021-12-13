@@ -9,6 +9,7 @@ import entidades.Persona;
 import implementacion.ImplPersona;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -24,13 +25,15 @@ public class ClientesJDialog extends javax.swing.JDialog {
     //MetodosSistema metodos= new MetodosSistema();
     ImplPersona metodos = new ImplPersona();
     DefaultTableModel modelo;
+    ButtonGroup sexo = new ButtonGroup();
 
     public ClientesJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         ListarDatos();
-//        ReporteData();
         setTitle("Gestion de Clientes");
+        sexo.add(v_femenino);
+        sexo.add(v_masculino);
     }
 
     public void limpiarTabla(JTable table) {
@@ -40,7 +43,7 @@ public class ClientesJDialog extends javax.swing.JDialog {
             modelo.removeRow(0);
         }
     }
-    
+
     public void LimpiarTable() {
         for (int i = 0; i < modelo.getRowCount(); i++) {
             modelo.removeRow(i);
@@ -76,77 +79,121 @@ public class ClientesJDialog extends javax.swing.JDialog {
         v_usuario = new javax.swing.JTextField();
         v_contrasenia = new javax.swing.JPasswordField();
         jButtonGrabar = new javax.swing.JButton();
+        jButtonEliminar = new javax.swing.JButton();
+        v_id = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablePersonas = new javax.swing.JTable();
-        Limpiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Clientes", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
+        jPanelPrincipal.setBackground(new java.awt.Color(204, 204, 204));
+        jPanelPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nombres:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 55, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 58, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Ap.Paterno:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 86, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Ap. Materno:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 117, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Codigo:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 148, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
 
+        jLabel5.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Sexo:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 176, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 185, -1, -1));
 
+        jLabel6.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Usuario:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 201, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 216, -1, -1));
 
+        jLabel7.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Contraseña:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 227, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 247, -1, -1));
 
+        v_nombre.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         v_nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 v_nombreActionPerformed(evt);
             }
         });
-        jPanel1.add(v_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(146, 52, 126, -1));
-        jPanel1.add(v_paterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(146, 83, 126, -1));
+        jPanel1.add(v_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 52, 150, -1));
 
+        v_paterno.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jPanel1.add(v_paterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 83, 150, -1));
+
+        v_materno.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         v_materno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 v_maternoActionPerformed(evt);
             }
         });
-        jPanel1.add(v_materno, new org.netbeans.lib.awtextra.AbsoluteConstraints(146, 114, 126, -1));
-        jPanel1.add(v_codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(146, 145, 126, -1));
+        jPanel1.add(v_materno, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 114, 150, -1));
+
+        v_codigo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jPanel1.add(v_codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 145, 150, -1));
 
         buttonGroupSexo.add(v_masculino);
+        v_masculino.setForeground(new java.awt.Color(255, 255, 255));
         v_masculino.setText("Masculino");
-        jPanel1.add(v_masculino, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 176, -1, -1));
+        jPanel1.add(v_masculino, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, -1, -1));
 
         buttonGroupSexo.add(v_femenino);
+        v_femenino.setForeground(new java.awt.Color(255, 255, 255));
         v_femenino.setText("Femenino");
-        jPanel1.add(v_femenino, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 176, -1, -1));
-        jPanel1.add(v_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 201, 131, -1));
-        jPanel1.add(v_contrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 227, 131, -1));
+        jPanel1.add(v_femenino, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, -1, -1));
 
-        jButtonGrabar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        v_usuario.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jPanel1.add(v_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 210, 150, -1));
+
+        v_contrasenia.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jPanel1.add(v_contrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 242, 150, -1));
+
+        jButtonGrabar.setFont(new java.awt.Font("Chiller", 1, 24)); // NOI18N
         jButtonGrabar.setText("Grabar");
         jButtonGrabar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonGrabarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonGrabar, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 298, 201, 37));
+        jPanel1.add(jButtonGrabar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 100, 50));
 
+        jButtonEliminar.setFont(new java.awt.Font("Chiller", 1, 24)); // NOI18N
+        jButtonEliminar.setText("Eliminar");
+        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 100, 50));
+        jPanel1.add(v_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, -1, -1));
+
+        jPanelPrincipal.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 15, 309, 353));
+        jPanel1.getAccessibleContext().setAccessibleDescription("");
+
+        jTablePersonas.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTablePersonas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nombre", "Paterno", "Materno", "Codigo"
+                "ID", "Nombre", "Paterno", "Materno", "DNI"
             }
         ));
         jTablePersonas.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -155,63 +202,21 @@ public class ClientesJDialog extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(jTablePersonas);
+        if (jTablePersonas.getColumnModel().getColumnCount() > 0) {
+            jTablePersonas.getColumnModel().getColumn(4).setPreferredWidth(30);
+        }
 
-        Limpiar.setText("Limpiar");
-        Limpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LimpiarActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanelPrincipalLayout = new javax.swing.GroupLayout(jPanelPrincipal);
-        jPanelPrincipal.setLayout(jPanelPrincipalLayout);
-        jPanelPrincipalLayout.setHorizontalGroup(
-            jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPrincipalLayout.createSequentialGroup()
-                .addContainerGap(233, Short.MAX_VALUE)
-                .addComponent(Limpiar)
-                .addGap(44, 44, 44)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
-            .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelPrincipalLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(665, Short.MAX_VALUE)))
-        );
-        jPanelPrincipalLayout.setVerticalGroup(
-            jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelPrincipalLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(128, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPrincipalLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Limpiar)
-                .addGap(194, 194, 194))
-            .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelPrincipalLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(123, Short.MAX_VALUE)))
-        );
-
-        jPanel1.getAccessibleContext().setAccessibleDescription("");
+        jPanelPrincipal.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 619, 348));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -245,9 +250,11 @@ public class ClientesJDialog extends javax.swing.JDialog {
 
         if (!v_nombre.getText().equals("") || !v_paterno.getText().equals("") || !v_materno.getText().equals("") || !v_codigo.getText().equals("")) {
             metodos.registrarPersona(dp);
+            v_id.setText("");
             v_nombre.setText("");
             v_paterno.setText("");
             v_materno.setText("");
+            sexo.clearSelection();
             v_usuario.setText("");
             v_contrasenia.setText("");
             v_codigo.setText("");
@@ -271,33 +278,57 @@ public class ClientesJDialog extends javax.swing.JDialog {
 
     private void jTablePersonasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePersonasMouseClicked
         int row = jTablePersonas.getSelectedRow();
-        String nombre = jTablePersonas.getValueAt(row, 0).toString();
-        String paterno = jTablePersonas.getValueAt(row, 1).toString();
-        String materno = jTablePersonas.getValueAt(row, 2).toString();
+        String id = jTablePersonas.getValueAt(row, 0).toString();
+        String nombre = jTablePersonas.getValueAt(row, 1).toString();
+        String paterno = jTablePersonas.getValueAt(row, 2).toString();
+        String materno = jTablePersonas.getValueAt(row, 3).toString();
+        String codigo = jTablePersonas.getValueAt(row, 4).toString();
 
         System.out.println("Holasss" + nombre + paterno + materno);
+        v_id.setText(id);
         v_nombre.setText(nombre);
+        v_paterno.setText(paterno);
+        v_materno.setText(materno);
+        v_codigo.setText(codigo);
     }//GEN-LAST:event_jTablePersonasMouseClicked
 
-    private void LimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimpiarActionPerformed
-        LimpiarTable();
-        ListarDatos();
-    }//GEN-LAST:event_LimpiarActionPerformed
+    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+        String id = v_id.getText();
+        if (!"".equals(v_nombre.getText())) {
+            int pregunta = JOptionPane.showConfirmDialog(null, "¿Esta seguro de eliminar?");
+            if (pregunta == 0) {
+                metodos.eliminarRegistroPersona(id);
+                LimpiarTable();
+                v_id.setText("");
+                v_nombre.setText("");
+                v_paterno.setText("");
+                v_materno.setText("");
+                v_usuario.setText("");
+                sexo.clearSelection();
+                v_contrasenia.setText("");
+                v_codigo.setText("");
+                ListarDatos();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecciona una fila");
+        }
+    }//GEN-LAST:event_jButtonEliminarActionPerformed
 
-    public void ListarDatos(){
+    public void ListarDatos() {
         ArrayList<Persona> Listarp = metodos.reportePersonas();
         modelo = (DefaultTableModel) jTablePersonas.getModel();
-        Object[] ob = new Object[4];
+        Object[] ob = new Object[5];
         for (int i = 0; i < Listarp.size(); i++) {
-            ob[0] = Listarp.get(i).getNombre();
-            ob[1] = Listarp.get(i).getAp_paterno();
-            ob[2] = Listarp.get(i).getAp_materno();
-            ob[3] = Listarp.get(i).getCodigo();
+            ob[0] = Listarp.get(i).getId();
+            ob[1] = Listarp.get(i).getNombre();
+            ob[2] = Listarp.get(i).getAp_paterno();
+            ob[3] = Listarp.get(i).getAp_materno();
+            ob[4] = Listarp.get(i).getCodigo();
             modelo.addRow(ob);
         }
         jTablePersonas.setModel(modelo);
     }
-    
+
     public void ReporteData() {
         /*
             String columnas[] = {"Nombres","Ap. Paterno","Ap. Materno","Codigo"};
@@ -307,13 +338,13 @@ public class ClientesJDialog extends javax.swing.JDialog {
                   jTablePersonas= new JTable(filas, columnas);
                   JScrollPane tabla1= new JScrollPane(jTablePersonas);
           -*/
-        
+
         modelo = new DefaultTableModel();
         modelo.addColumn("Nombre");
         modelo.addColumn("Paterno");
         modelo.addColumn("Materno");
         modelo.addColumn("Codigo");
-        
+
         for (Persona pers : metodos.reportePersonas()) {
             Object[] fila = new Object[4];
             fila[0] = pers.getNombre();
@@ -370,8 +401,8 @@ public class ClientesJDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Limpiar;
     private javax.swing.ButtonGroup buttonGroupSexo;
+    private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonGrabar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -387,6 +418,7 @@ public class ClientesJDialog extends javax.swing.JDialog {
     private javax.swing.JTextField v_codigo;
     private javax.swing.JPasswordField v_contrasenia;
     private javax.swing.JRadioButton v_femenino;
+    private javax.swing.JTextField v_id;
     private javax.swing.JRadioButton v_masculino;
     private javax.swing.JTextField v_materno;
     private javax.swing.JTextField v_nombre;

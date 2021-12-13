@@ -2,6 +2,8 @@ package igu;
 
 import entidades.Persona;
 import igu.clientes.ClientesJDialog;
+import igu.productos.ProductoJDialog;
+import igu.ventas.VentasJDialog;
 import implementacion.ImplPersona;
 import javax.swing.*;
 import java.awt.*;
@@ -119,34 +121,6 @@ public class MenuFrame extends JFrame {
         }
         );
 
-        menuMantenimientoVentas.addActionListener(
-                new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String columnas[] = {"Nombres", "Ap. Paterno", "Ap. Materno", "Codigo"};
-                Object filas[][] = new Object[metodos.reportePersonas().size()][4];
-
-                /*        Vector nuevoVector = metodos.reportePersonas();
-                  for(int i =0; i<nuevoVector.size();i++){
-                      Persona v = (Persona)metodos.reportePersonas().get(i);
-                      filas[i][0]=v.getNombre();
-                      filas[i][1]=v.getAp_paterno();
-                      filas[i][2]=v.getAp_materno();
-                      filas[i][3]=v.getCodigo();
-                  }
-                 */
-                JTable tabla = new JTable(filas, columnas);
-                JScrollPane tabla1 = new JScrollPane(tabla);
-
-                JPanel reporte = new JPanel();
-                reporte.add(tabla1);
-
-                Object msg[] = {reporte};
-                JOptionPane.showMessageDialog(null, msg, "Reporte", JOptionPane.QUESTION_MESSAGE);
-
-            }
-        }
-        );
-
         menuMantenimientoCustomer.addActionListener(
                 new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -234,6 +208,26 @@ public class MenuFrame extends JFrame {
                    
                     
                  */
+            }
+        }
+        );
+
+        menuMantenimientoProducts.addActionListener(
+                new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                ProductoJDialog cf = new ProductoJDialog(null, rootPaneCheckingEnabled);
+                cf.show();
+            }
+        }
+        );
+        
+        menuMantenimientoVentas.addActionListener(
+                new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                VentasJDialog vt = new VentasJDialog(null, rootPaneCheckingEnabled);
+                vt.show();
             }
         }
         );

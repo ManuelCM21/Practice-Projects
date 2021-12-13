@@ -12,7 +12,7 @@ public class ConexionDB {
     public Connection conectaMysql() {
         try {
             userDB = "root";
-            url = "jdbc:mysql://localhost:3306/sales-db";//jdbc:mysql://127.0.0.1:3307/sales-db
+            url = "jdbc:mysql://localhost:3307/sales-db";//jdbc:mysql://127.0.0.1:3307/sales-db
             conexion = DriverManager.getConnection(url, userDB, password);
             if (conexion != null) {
                 System.out.println("Se establecio la conexion");
